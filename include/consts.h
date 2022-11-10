@@ -16,4 +16,7 @@ constexpr int DEFAULT_LCD_COLUMNS = 16;
 // Sonar
 constexpr int MAX_DISTANCE = 100;
 
+// Scheduler
+constexpr int MAX_NUMBER_OF_TASKS = 20;
+
 #endif
