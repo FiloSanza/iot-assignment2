@@ -17,8 +17,8 @@ namespace Components {
      * Link the pin of the led to the pin mode.
      */
     void setUp();
-    virtual void turnOn();
-    virtual void turnOff();
+    void turnOn();
+    void turnOff();
 
   protected:
     pin_t pin;
@@ -31,12 +31,15 @@ namespace Components {
   class BlinkingLed : public Led {
   public:
     BlinkingLed();
-    BlinkingLed(pin_t pin, uint16_t period);
+    BlinkingLed(pin_t pin, timestamp_t period);
 
     void update();
+
   private:
-    uint16_t period;
-    unsigned long previousMillis = 0; 
+    void switchState();
+
+    timestamp_t period;
+    timestamp_t previous_millis = 0; 
   };
 }
 
