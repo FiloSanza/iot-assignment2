@@ -2,9 +2,9 @@
 #define __LED_H_INCLUDED
 
 #include "lib.h"
+#include "task.h"
 
-namespace Components
-{
+namespace Components {
     /**
      * On/Off led.
      */
@@ -29,18 +29,18 @@ namespace Components
     /**
      * Blinking led. It extends the Led class.
      */
-    class BlinkingLed : public Led {
+    class BlinkingLed : public Led, public Scheduling::PeriodicTask {
     public:
         BlinkingLed();
         BlinkingLed(pin_t pin, timestamp_t period);
 
-        void update();
+        void init();
+        void tick();
 
     private:
         void switchState();
 
-        timestamp_t period;
-        timestamp_t previous_millis = 0;
+        pin_t pin;
     };
 }
 

@@ -26,15 +26,20 @@ namespace Components
 
     BlinkingLed::BlinkingLed() {}
     BlinkingLed::BlinkingLed(pin_t pin, timestamp_t period)
-        : period(period), Led(pin) {}
+        : pin(pin) {
+        pinMode(pin, OUTPUT);
+    }
 
-    void BlinkingLed::update() {
-        timestamp_t now = millis();
-        if (now - previous_millis < period) {
+    void BlinkingLed::init() {
+        turnOff();
+    }
+
+    void BlinkingLed::tick() {
+        if (!canRun()) {
             return;
         }
 
-        previous_millis = now;
+        last_execution = millis();
         switchState();
     }
 
