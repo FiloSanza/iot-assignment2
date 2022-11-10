@@ -1,0 +1,6 @@
+#ifndef __POTENTIOMETER_H_INCLUDED
+#define __POTENTIOMETER_H_INCLUDED
+
+
+
+#endif
