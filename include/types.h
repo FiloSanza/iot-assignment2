@@ -6,6 +6,12 @@
 typedef uint8_t pin_t;
 typedef unsigned long timestamp_t;
 
+struct LCDLine {
+    String text;
+    uint32_t row;
+    uint32_t column;
+};
+
 enum class ButtonState {
     Pressed,
     NotPressed 
