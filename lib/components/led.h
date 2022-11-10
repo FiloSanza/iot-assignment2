@@ -17,8 +17,8 @@ namespace Components {
      * Link the pin of the led to the pin mode.
      */
     void setUp();
-    void turnOn();
-    void turnOff();
+    virtual void turnOn();
+    virtual void turnOff();
 
   protected:
     pin_t pin;
@@ -26,19 +26,17 @@ namespace Components {
   };
 
   /**
-   * Fading led. It extends the Led class.
+   * Blinking led. It extends the Led class.
    */
-  class FadingLed : public Led {
+  class BlinkingLed : public Led {
   public:
-    FadingLed();
-    FadingLed(pin_t pin, uint16_t period);
+    BlinkingLed();
+    BlinkingLed(pin_t pin, uint16_t period);
 
-    /**
-     * Call this function to make the led pulsing.
-     */
-    void pulse();
+    void update();
   private:
     uint16_t period;
+    unsigned long previousMillis = 0; 
   };
 }
 
