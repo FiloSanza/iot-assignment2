@@ -6,12 +6,12 @@
 namespace Components {
     class LightSensor {
     public:
-        LightSensor(uint8_t pin);
+        LightSensor(pin_t pin);
 
         float read() const;
 
     private:
-        uint8_t pin;
+        pin_t pin;
     };
 }
 

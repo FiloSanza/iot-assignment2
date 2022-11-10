@@ -7,12 +7,12 @@ namespace Components {
   class Pir {
     public:
       Pir();
-      Pir(uint8_t pin);
+      Pir(pin_t pin);
 
       bool read();
 
   private:
-    uint8_t pin;
+    pin_t pin;
   };
 }
 

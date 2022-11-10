@@ -2,7 +2,7 @@
 
 namespace Components {
 
-    Potentiometer::Potentiometer(uint8_t pin, uint16_t lower_bound, uint16_t upper_bound) 
+    Potentiometer::Potentiometer(pin_t pin, uint16_t lower_bound, uint16_t upper_bound) 
         : pin(pin), lower_bound(lower_bound), upper_bound(upper_bound) {}
 
     void Potentiometer::setUpperBound(uint16_t value) {

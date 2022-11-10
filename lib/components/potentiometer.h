@@ -6,7 +6,7 @@
 namespace Components {
     class Potentiometer {
     public:
-        Potentiometer(uint8_t pin, uint16_t lower_bound, uint16_t upper_bound);
+        Potentiometer(pin_t pin, uint16_t lower_bound, uint16_t upper_bound);
 
         void setUpperBound(uint16_t value);
         void setLowerBound(uint16_t value);
@@ -16,7 +16,7 @@ namespace Components {
         uint16_t read() const;
 
     private:
-        uint8_t pin;
+        pin_t pin;
         uint16_t lower_bound;
         uint16_t upper_bound;
     };

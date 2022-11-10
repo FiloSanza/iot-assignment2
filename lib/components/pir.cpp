@@ -4,7 +4,7 @@
 namespace Components {
   Pir::Pir() {}
 
-  Pir::Pir(uint8_t pin) : pin(pin) {}
+  Pir::Pir(pin_t pin) : pin(pin) {}
 
   bool Pir::read() {
     return digitalRead(pin) == HIGH;

@@ -3,7 +3,7 @@
 #include "consts.h"
 
 namespace Components {
-    LightSensor::LightSensor(uint8_t pin)
+    LightSensor::LightSensor(pin_t pin)
         : pin(pin) {}
 
     float LightSensor::read() const {

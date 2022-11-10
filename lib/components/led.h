@@ -10,7 +10,7 @@ namespace Components {
   class Led {
   public:
     Led();
-    Led(uint8_t pin);
+    Led(pin_t pin);
 
     /**
      * Call this function to initialize the led.
@@ -21,7 +21,7 @@ namespace Components {
     void turnOff();
 
   protected:
-    uint8_t pin;
+    pin_t pin;
     bool is_on = false;
   };
 
@@ -31,7 +31,7 @@ namespace Components {
   class FadingLed : public Led {
   public:
     FadingLed();
-    FadingLed(uint8_t pin, uint16_t period);
+    FadingLed(pin_t pin, uint16_t period);
 
     /**
      * Call this function to make the led pulsing.
