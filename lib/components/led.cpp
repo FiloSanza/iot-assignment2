@@ -24,20 +24,23 @@ namespace Components {
     }
   }
 
-  FadingLed::FadingLed() {}
+  BlinkingLed::BlinkingLed() {}
 
-  FadingLed::FadingLed(uint8_t pin, uint16_t period)
+  BlinkingLed::BlinkingLed(uint8_t pin, uint16_t period)
       : period(period), Led(pin) {
   }
 
-  void FadingLed::pulse() {
-    if (is_on) { // Before start the pulsing it's necessary to turn on the led.
-
-      // Instead of use the delay function (which is blocking) we use
-      // millis function and cosine. Since cosine varies from -1 to 1
-      // then we map the value obtained to the range [0, 255].
-      uint8_t value = 128 + 127 * cos(2 * PI / period * millis());
-      analogWrite(pin, value);
+  void BlinkingLed::update() {
+    unsigned long currentMillis = millis();
+    if (currentMillis - previousMillis >= period) {
+      previousMillis = currentMillis;
+      if (!is_on) {
+          turnOn();
+      } else {
+        turnOff();
+      }
     }
   }
+
+
 }
