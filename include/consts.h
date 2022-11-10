@@ -13,4 +13,7 @@ constexpr int LCD_I2C_ADDRESS = 0x27;
 constexpr int DEFAULT_LCD_ROWS = 2;
 constexpr int DEFAULT_LCD_COLUMNS = 16;
 
+// Sonar
+constexpr int MAX_DISTANCE = 100;
+
 #endif
