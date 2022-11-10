@@ -3,44 +3,45 @@
 
 #include "lib.h"
 
-namespace Components {
-  /**
-   * On/Off led.
-   */
-  class Led {
-  public:
-    Led();
-    Led(pin_t pin);
+namespace Components
+{
+    /**
+     * On/Off led.
+     */
+    class Led {
+    public:
+        Led();
+        Led(pin_t pin);
+
+        /**
+         * Call this function to initialize the led.
+         * Link the pin of the led to the pin mode.
+         */
+        void setUp();
+        void turnOn();
+        void turnOff();
+
+    protected:
+        pin_t pin;
+        bool is_on = false;
+    };
 
     /**
-     * Call this function to initialize the led.
-     * Link the pin of the led to the pin mode.
+     * Blinking led. It extends the Led class.
      */
-    void setUp();
-    void turnOn();
-    void turnOff();
+    class BlinkingLed : public Led {
+    public:
+        BlinkingLed();
+        BlinkingLed(pin_t pin, timestamp_t period);
 
-  protected:
-    pin_t pin;
-    bool is_on = false;
-  };
+        void update();
 
-  /**
-   * Blinking led. It extends the Led class.
-   */
-  class BlinkingLed : public Led {
-  public:
-    BlinkingLed();
-    BlinkingLed(pin_t pin, timestamp_t period);
+    private:
+        void switchState();
 
-    void update();
-
-  private:
-    void switchState();
-
-    timestamp_t period;
-    timestamp_t previous_millis = 0; 
-  };
+        timestamp_t period;
+        timestamp_t previous_millis = 0;
+    };
 }
 
 #endif

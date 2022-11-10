@@ -3,17 +3,18 @@
 
 #include "lib.h"
 
-namespace Components {
-  class Pir {
+namespace Components
+{
+    class Pir {
     public:
-      Pir();
-      Pir(pin_t pin);
+        Pir();
+        Pir(pin_t pin);
 
-      bool read();
+        bool read();
 
-  private:
-    pin_t pin;
-  };
+    private:
+        pin_t pin;
+    };
 }
 
 #endif
