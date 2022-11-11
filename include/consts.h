@@ -19,4 +19,7 @@ constexpr int MAX_DISTANCE = 100;
 // Scheduler
 constexpr int MAX_NUMBER_OF_TASKS = 20;
 
+// Print Debug Task
+constexpr int MAX_NUMBER_OF_COMPONENTS = 10;
+
 #endif

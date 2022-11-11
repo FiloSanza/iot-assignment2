@@ -9,8 +9,10 @@ namespace Logger {
 
     class Logger {
     public:
+        static Logger& getInstance();
+        
         Logger();
-        Logger& getInstance();
+        
         void setLevel(LogLevel level);
         void log(LogLevel level, const char* msg);
     private:
