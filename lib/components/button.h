@@ -2,9 +2,10 @@
 #define __BUTTON_H_INCLUDED
 
 #include "lib.h"
+#include "component.h"
 
 namespace Components {
-    class Button {
+    class Button : public ReadableComponent<ButtonState> {
     public:
         Button(pin_t pin, bool use_pullup_resistor = true);
 

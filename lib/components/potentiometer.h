@@ -2,9 +2,10 @@
 #define __POTENTIOMETER_H_INCLUDED
 
 #include "lib.h"
+#include "component.h"
 
 namespace Components {
-    class Potentiometer {
+    class Potentiometer : public ReadableComponent<uint16_t> {
     public:
         Potentiometer(pin_t pin, uint16_t lower_bound, uint16_t upper_bound);
 

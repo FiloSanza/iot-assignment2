@@ -3,9 +3,10 @@
 
 #include <NewPing.h>
 #include "lib.h"
+#include "component.h"
 
 namespace Components {
-    class Sonar {
+    class Sonar : public ReadableComponent<float> {
     public:
         Sonar() = default;
         Sonar(pin_t echo_pin, pin_t trigger_pin, uint32_t max_distance = MAX_SENSOR_DISTANCE);
