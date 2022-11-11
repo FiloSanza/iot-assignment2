@@ -1,6 +1,6 @@
 #include "logger.h"
 
-#include <ArduinoSTL.h>
+#include <Arduino.h>
 
 namespace Logger {
     Logger::Logger() : level(LogLevel::Error) {}
@@ -20,11 +20,8 @@ namespace Logger {
             return;
         }
 
-        printf(
-            "[%s]: %s\n", 
-            Logger::logLevelToString(level),
-            msg
-        );
+        const char* level_str = Logger::logLevelToString(level);
+        Serial.println("[" + String(level_str) + "]:" + String(msg));
     }
 
     const char* Logger::logLevelToString(LogLevel level) {

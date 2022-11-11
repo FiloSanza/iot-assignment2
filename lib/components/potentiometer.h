@@ -1,8 +1,9 @@
 #ifndef __POTENTIOMETER_H_INCLUDED
 #define __POTENTIOMETER_H_INCLUDED
 
-#include "lib.h"
 #include "component.h"
+#include <Arduino.h>
+#include "types.h"
 
 namespace Components {
     class Potentiometer : public ReadableComponent<uint16_t> {
@@ -14,7 +15,7 @@ namespace Components {
 
         uint16_t getUpperBound() const;
         uint16_t getLowerBound() const;
-        uint16_t read() const;
+        uint16_t read();
 
     private:
         pin_t pin;

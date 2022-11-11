@@ -1,12 +1,9 @@
-#include "lib.h"
 #include "led.h"
 
 namespace Components
 {
     Led::Led() {}
-    Led::Led(pin_t pin) : pin(pin) {}
-
-    void Led::setUp() {
+    Led::Led(pin_t pin) : pin(pin) {
         pinMode(pin, OUTPUT);
     }
 
@@ -25,6 +22,7 @@ namespace Components
     }
 
     void Led::switchState() {
+        Serial.flush();
         if (is_on) {
             turnOff();
         } else {

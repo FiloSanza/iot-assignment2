@@ -3,7 +3,7 @@
 
 // Light Sensor
 constexpr int VIN = 5;
-constexpr int LIGHT_SENSOR_RESITOR = 10000;
+constexpr int LIGHT_SENSOR_RESITOR = 1000;
 
 // Button
 constexpr int BUTTON_BOUNCING_DELAY = 50;

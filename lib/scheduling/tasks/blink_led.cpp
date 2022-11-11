@@ -1,7 +1,7 @@
 #include "blink_led.h"
 
 namespace Tasks {
-    BlinkLed::BlinkLed(Components::Led led, timestamp_t period) : led(led) {
+    BlinkLed::BlinkLed(Components::Led* led, timestamp_t period) : led(led) {
         setPeriodAndRestartTimer(period);
     }
 
@@ -12,7 +12,9 @@ namespace Tasks {
             return;
         }
 
-        led.switchState();
+        Serial.flush();
+
+        led->switchState();
         markExecutedNow();
     }
 }

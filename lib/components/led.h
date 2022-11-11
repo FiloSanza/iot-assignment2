@@ -1,8 +1,8 @@
 #ifndef __LED_H_INCLUDED
 #define __LED_H_INCLUDED
 
-#include "lib.h"
-#include "task.h"
+#include <Arduino.h>
+#include "types.h"
 
 namespace Components {
     /**
@@ -13,11 +13,6 @@ namespace Components {
         Led();
         Led(pin_t pin);
 
-        /**
-         * Call this function to initialize the led.
-         * Link the pin of the led to the pin mode.
-         */
-        void setUp();
         void turnOn();
         void turnOff();
         void switchState();

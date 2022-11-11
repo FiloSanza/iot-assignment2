@@ -1,4 +1,3 @@
-#include "lib.h"
 #include "pir.h"
 
 namespace Components

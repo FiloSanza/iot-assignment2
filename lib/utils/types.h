@@ -1,7 +1,9 @@
 #ifndef _ENUMS_H_INCLUDED
 #define _ENUMS_H_INCLUDED
 
-#include <cstdint>
+#include <inttypes.h>
+#include <Arduino.h>
+#include "component.h"
 
 typedef uint8_t pin_t;
 typedef unsigned long timestamp_t;
@@ -12,9 +14,9 @@ struct LCDLine {
     uint32_t column;
 };
 
-enum class ButtonState {
-    Pressed,
-    NotPressed 
+enum ButtonState {
+    NotPressed = 0,
+    Pressed = 1
 };
 
 #endif

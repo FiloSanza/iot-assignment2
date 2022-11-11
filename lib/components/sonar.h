@@ -2,8 +2,9 @@
 #define __SONAR_H_INCLUDED
 
 #include <NewPing.h>
-#include "lib.h"
+#include <Arduino.h>
 #include "component.h"
+#include "types.h"
 
 namespace Components {
     class Sonar : public ReadableComponent<float> {

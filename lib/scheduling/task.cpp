@@ -14,11 +14,14 @@ namespace Scheduling {
     }
 
     bool PeriodicTask::canRun() {
-        return is_enabled && ((millis() - last_execution) >= period);
+        timestamp_t now = millis();
+        // Serial.println(String(now) + " - " + String(last_execution) + " >= " + String(period) + " | " + String(((now - last_execution) >= period)));
+        // Serial.flush();
+        return is_enabled && ((now - last_execution) >= period);
     }
 
     void PeriodicTask::setPeriod(timestamp_t period) {
-        period = period;
+        this->period = period;
     }
 
     void PeriodicTask::markExecutedNow() {

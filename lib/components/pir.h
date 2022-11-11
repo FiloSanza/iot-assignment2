@@ -1,8 +1,9 @@
 #ifndef __PIR_H_INCLUDED
 #define __PIR_H_INCLUDED
 
-#include "lib.h"
+#include <Arduino.h>
 #include "component.h"
+#include "types.h"
 
 namespace Components {
     class Pir : public ReadableComponent<bool> {

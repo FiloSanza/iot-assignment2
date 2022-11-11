@@ -9,12 +9,12 @@ namespace Tasks {
     class BlinkLed : public Scheduling::PeriodicTask {
     public:
         BlinkLed() = default;
-        BlinkLed(Components::Led led, timestamp_t period);
+        BlinkLed(Components::Led* led, timestamp_t period);
 
         void init();
         void tick();
     private:
-        Components::Led led;
+        Components::Led* led;
     };
 }
 

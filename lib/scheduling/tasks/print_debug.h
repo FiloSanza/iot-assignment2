@@ -2,8 +2,8 @@
 #define _PRINT_DEBUG_INCLUDED
 
 #include "task.h"
-#include "component.h"
 #include "consts.h"
+#include "types.h"
 
 namespace Tasks {
     template<typename T>
@@ -13,11 +13,16 @@ namespace Tasks {
 
         void init();
         void tick();
-        void addComponent(Components::ReadableComponent<T>* component);
+        void addComponent(String name, Components::ReadableComponent<T>* component);
 
     private:
+        struct DebugComponent {
+            String name;
+            Components::ReadableComponent<T>* component;
+        };
+
         uint16_t last_idx;
-        Components::ReadableComponent<T>* components[MAX_NUMBER_OF_COMPONENTS];
+        DebugComponent components[MAX_NUMBER_OF_COMPONENTS];
     };
 }
 

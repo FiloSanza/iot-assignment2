@@ -21,7 +21,7 @@ namespace Components {
         return lower_bound;
     }
 
-    uint16_t Potentiometer::read() const {
+    uint16_t Potentiometer::read() {
         int sensor_value = analogRead(pin);
         return map(sensor_value, 0, 1023, lower_bound, upper_bound);
     }

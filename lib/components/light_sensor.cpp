@@ -1,12 +1,11 @@
 #include "light_sensor.h"
-
 #include "consts.h"
 
 namespace Components {
     LightSensor::LightSensor(pin_t pin)
         : pin(pin) {}
 
-    float LightSensor::read() const {
+    float LightSensor::read() {
         int value = analogRead(pin);
 
         // Convert to lux

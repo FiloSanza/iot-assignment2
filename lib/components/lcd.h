@@ -2,9 +2,9 @@
 #define __LCD_H_INCLUDED
 
 #include <LiquidCrystal_I2C.h>
-
-#include "lib.h"
+#include <Arduino.h>
 #include "consts.h"
+#include "types.h"
 
 namespace Components {    
     class LCD {

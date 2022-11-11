@@ -13,7 +13,7 @@ namespace Components {
     }
 
     void LCD::displayMessage(LCDLine* message, uint32_t number_of_lines) {
-        for (int i=0; i<number_of_lines; i++) {
+        for (uint32_t i=0; i<number_of_lines; i++) {
             lcd.setCursor(message[i].column, message[i].row);
             lcd.print(message[i].text);
         }

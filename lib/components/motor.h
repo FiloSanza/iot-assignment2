@@ -2,8 +2,8 @@
 #define __SERVO_H_INCLUDED
 
 #include <Servo.h>
-
-#include "lib.h"
+#include <Arduino.h>
+#include "types.h"
 
 namespace Components {
     class Motor {

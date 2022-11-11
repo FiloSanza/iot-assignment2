@@ -1,8 +1,9 @@
 #ifndef __BUTTON_H_INCLUDED
 #define __BUTTON_H_INCLUDED
 
-#include "lib.h"
+#include <Arduino.h>
 #include "component.h"
+#include "types.h"
 
 namespace Components {
     class Button : public ReadableComponent<ButtonState> {
@@ -15,7 +16,8 @@ namespace Components {
 
         pin_t pin;
         timestamp_t last_press;
-
+        bool use_pullup_resistor;
+        
         /**
         * Lazily evaluated by read.
         * There is no need to do polling, the value will be updated accordingly

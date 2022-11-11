@@ -16,7 +16,7 @@ namespace Scheduling {
     }
 
     void Scheduler::tick() {
-        for (int i=0; i<last_idx; i++) {
+        for (uint16_t i=0; i<last_idx; i++) {
             if (tasks[i]->isEnabled()) {
                 tasks[i]->tick();
             }

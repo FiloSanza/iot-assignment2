@@ -1,13 +1,14 @@
 #ifndef __SCHEDULER_H_INCLUDED
 #define __SCHEDULER_H_INCLUDED
 
-#include <avr_stl.h>
 #include "consts.h"
 #include "task.h"
 
 namespace Scheduling {
     class Scheduler {
     public:
+        Scheduler();
+
         /**
          * Schedule a job, returns true if there are available
          * slots for the new task, false otherwise. 

@@ -1,7 +1,7 @@
 #ifndef __TASK_H_INCLUDED
 #define __TASK_H_INCLUDED
 
-#include "lib.h"
+#include "types.h"
 
 namespace Scheduling {
     class Task {

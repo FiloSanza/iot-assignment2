@@ -4,5 +4,6 @@
 #include "scheduler.h"
 #include "task.h"
 #include "tasks/blink_led.h"
+#include "tasks/print_debug.h"
 
 #endif
