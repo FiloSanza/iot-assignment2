@@ -1,0 +1,78 @@
+@startuml Assigment2
+
+/'
+    SENSORS
+
+    - Pir to detect movement
+    - Sonar used to measure water level
+    - ServoMotor used to control the valve (0deg=Close, 180deg=Open)
+    - Light Sensor = used to measure light level
+    - La = Green Led to report a movement
+    - Lb = Green Led which means the bridge can be used
+    - Lc = Red Led which:
+        - Blink every 2sec in PreAlarm
+        - Is On in Alarm
+    - LCD = I2C Display to give infos to the user
+'/
+
+/'
+    CONSTANTS:
+    - LHl = Light level threshold
+    - W1, W2, Wmax = water level bounds
+'/
+
+/' In the normal state Lb is off and Lc is off,
+    that means that the bridge can be used
+'/
+
+[*] --> Begin : / La=Off, Lb=Off, Lc=Off, waterLevel=measureLevel(), valve=Off, t=0
+
+Begin --> Normal : [waterlevel < WL1] / \n Lb=On
+Begin --> PreAlarm : [WL1 <= waterLevel < WL2] / \n Lb=On
+Begin --> Alarm : [W2 <= waterLevel <= WMAX] / \n Lc=On, valve=On
+
+/'
+    When the PIR detect the movement La is switched On or Off
+    depending on the light level
+'/
+Normal : do / t++
+Normal : [t >= T1] / La=Off
+Normal : [lightLevel < THl] / La=On
+Normal : [lightLevel >= THl] / La=Off
+Normal : movementDetected / update La, t=0
+Normal  : after PEnormal / waterlevel = measureLevel()
+Normal --> PreAlarm : [WL1 <= waterLevel < WL2]
+Normal --> Alarm : [W2 <= waterLevel <= WMAX] / \n La=Off, Lb=Off, Lc=On, valve=On
+PreAlarm --> Normal : [waterlevel < WL1] / \n Lc=Off
+/'
+    Infos: PreAlarm State and Current Water Level
+'/
+PreAlarm : do / t++
+PreAlarm : [t >= T1] / La=Off
+PreAlarm : do / display infos
+PreAlarm : after 2sec / Lc = !Lc 
+PreAlarm : [lightLevel < THl] / La=On
+PreAlarm : [lightLevel >= THl] / La=Off
+PreAlarm : movementDetected / update La, t=0
+PreAlarm : after PEprealarm / waterLevel = measureLevel() 
+PreAlarm --> Alarm : [W2 <= waterLevel <= WMAX] / \n valve=On, La=Off, Lb=Off, Lc=On
+
+Alarm --> PreAlarm : [WL1 <= waterLevel < WL2] / \n Lb=On, Lc=Off, valve=Off, t=0
+Alarm --> Normal : [waterLevel < W1] / \n Lb=On, Lc=Off, valve=Off, t=0
+/'
+    Infos: Alarm State, Current Water Level 
+    and Current opening degrees
+'/
+Alarm : do / LCD display Infos
+Alarm  : after PEalarm / waterLevel = measureLevel()
+Alarm : do / open the valve by getDegrees(waterLevel)
+Alarm --> AlarmHumanControl : buttonPressed
+
+AlarmHumanControl : do / CLD display infos
+AlarmHumanControl : do / read Pot and update valve
+AlarmHumanControl  : after PEalarm / waterLevel = measureLevel()
+AlarmHumanControl --> Alarm : buttonPressed
+AlarmHumanControl --> PreAlarm : [WL1 <= waterLevel < WL2] / \n Lb=On, Lc=Off, valve=Off, t=0
+AlarmHumanControl --> Normal : [waterLevel < W1] / \n Lb=On, Lc=Off, valve=Off, t=0
+
+@enduml
