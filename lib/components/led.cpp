@@ -24,31 +24,15 @@ namespace Components
         }
     }
 
-    BlinkingLed::BlinkingLed() {}
-    BlinkingLed::BlinkingLed(pin_t pin, timestamp_t period)
-        : pin(pin) {
-        pinMode(pin, OUTPUT);
-    }
-
-    void BlinkingLed::init() {
-        turnOff();
-    }
-
-    void BlinkingLed::tick() {
-        if (!canRun()) {
-            return;
-        }
-
-        last_execution = millis();
-        switchState();
-    }
-
-    void BlinkingLed::switchState() {
+    void Led::switchState() {
         if (is_on) {
             turnOff();
-        }
-        else {
+        } else {
             turnOn();
         }
+    }
+
+    bool Led::isOn() const {
+        return is_on;
     }
 }

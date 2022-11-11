@@ -20,27 +20,13 @@ namespace Components {
         void setUp();
         void turnOn();
         void turnOff();
+        void switchState();
+        
+        bool isOn() const; 
 
     protected:
         pin_t pin;
         bool is_on = false;
-    };
-
-    /**
-     * Blinking led. It extends the Led class.
-     */
-    class BlinkingLed : public Led, public Scheduling::PeriodicTask {
-    public:
-        BlinkingLed();
-        BlinkingLed(pin_t pin, timestamp_t period);
-
-        void init();
-        void tick();
-
-    private:
-        void switchState();
-
-        pin_t pin;
     };
 }
 

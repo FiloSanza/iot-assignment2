@@ -11,6 +11,8 @@ namespace Scheduling {
 
         tasks[last_idx] = task;
         last_idx++;
+
+        return true;
     }
 
     void Scheduler::tick() {
