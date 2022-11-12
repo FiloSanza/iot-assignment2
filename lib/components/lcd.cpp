@@ -2,7 +2,7 @@
 
 namespace Components {
     LCD::LCD() : LCD(DEFAULT_LCD_ROWS, DEFAULT_LCD_COLUMNS) {}
-    LCD::LCD(uint32_t rows, uint32_t columns, uint32_t i2c_address = LCD_I2C_ADDRESS) 
+    LCD::LCD(uint32_t rows, uint32_t columns, uint32_t i2c_address) 
         : lcd(i2c_address, columns, rows) {
         lcd.init();
         lcd.backlight();

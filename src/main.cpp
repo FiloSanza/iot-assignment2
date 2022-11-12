@@ -19,7 +19,7 @@ Components::LightSensor* light_sensor;
 Components::Sonar* sonar;
 Components::Potentiometer* pot;
 
-Tasks::BlinkLed* blink;
+Tasks::SmartLight* smart_light;
 Tasks::PrintDebug<bool>* print_bool = new Tasks::PrintDebug<bool>(10000);
 Tasks::PrintDebug<float>* print_float = new Tasks::PrintDebug<float>(100);
 Tasks::PrintDebug<uint16_t>* print_uint = new Tasks::PrintDebug<uint16_t>(10000);
@@ -37,13 +37,13 @@ void setup() {
     sonar = new Components::Sonar(SONAR_ECHO_PIN, SONAR_TRIGGER_PIN);
     pot = new Components::Potentiometer(POT_PIN, 0, 180);
 
-    blink = new Tasks::BlinkLed(led, 1000);
+    smart_light = new Tasks::SmartLight(led, light_sensor, pir, 10);
 
-    scheduler->schedule(blink);
-    scheduler->schedule(print_btn);
-    scheduler->schedule(print_bool);
-    scheduler->schedule(print_uint);
+    // scheduler->schedule(print_btn);
+    // scheduler->schedule(print_bool);
+    // scheduler->schedule(print_uint);
     scheduler->schedule(print_float);
+    scheduler->schedule(smart_light);
 
     print_bool->addComponent("PIR", pir);
     print_btn->addComponent("Bottone", btn);
@@ -51,7 +51,7 @@ void setup() {
     print_float->addComponent("Luce", light_sensor);
     print_float->addComponent("Sonar", sonar);
 
-    Logger::Logger::getInstance().setLevel(Logger::LogLevel::Debug);
+    Logger::Logger::getInstance().setLevel(Logger::LogLevel::Info);
 }
 
 void loop() {

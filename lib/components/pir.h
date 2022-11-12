@@ -12,9 +12,12 @@ namespace Components {
         Pir(pin_t pin);
 
         bool read();
+        timestamp_t getLastDetectedAt() const;
 
     private:
         pin_t pin;
+        bool last_state;
+        timestamp_t last_detected_at;
     };
 }
 

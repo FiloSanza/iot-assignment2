@@ -17,11 +17,11 @@ namespace Tasks {
         }
 
         for (uint16_t i=0; i<last_idx; i++) {
-            String msg = "Read of \"" + components[i].name + "\": " + String(components[i].component->read());
-            Serial.println(msg);
-            Serial.flush();
-            // Logger::Logger::getInstance()
-                // .log(Logger::LogLevel::Debug, msg.c_str());
+            Logger::Message msg;
+            msg.setLevel(Logger::LogLevel::Debug)
+               .setSource(DEFAULT_PRINT_DEBUG_TASK_NAME)
+               .setContent(components[i].name + " => " + String(components[i].component->read()))
+               .log();
         }
         markExecutedNow();
     }
