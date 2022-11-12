@@ -10,6 +10,6 @@
 #include "motor.h"
 #include "pir.h"
 #include "potentiometer.h"
-// #include "sonar.h"
+#include "sonar.h"
 
 #endif
