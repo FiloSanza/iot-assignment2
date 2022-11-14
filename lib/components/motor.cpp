@@ -13,4 +13,8 @@ namespace Components {
     void Motor::moveTo(int angle) {
         servo.write(angle);
     }
+
+    int Motor::read() {
+        return servo.read();
+    }
 }

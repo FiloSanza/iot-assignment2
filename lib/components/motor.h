@@ -13,6 +13,7 @@ namespace Components {
         ~Motor();
 
         void moveTo(int angle);
+        int read();
     private:
         Servo servo;
     };
