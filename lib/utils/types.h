@@ -19,4 +19,11 @@ enum ButtonState {
     Pressed = 1
 };
 
+enum BridgeState  {
+    Begin = 0,
+    Normal,
+    PreAlarm,
+    Alarm
+};
+
 #endif
