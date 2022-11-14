@@ -65,14 +65,7 @@ Alarm --> Normal : [waterLevel < W1] / \n Lb=On, Lc=Off, valve=Off, t=0
 '/
 Alarm : do / LCD display Infos
 Alarm  : after PEalarm / waterLevel = measureLevel()
-Alarm : do / open the valve by getDegrees(waterLevel)
-Alarm --> AlarmHumanControl : buttonPressed
-
-AlarmHumanControl : do / CLD display infos
-AlarmHumanControl : do / read Pot and update valve
-AlarmHumanControl  : after PEalarm / waterLevel = measureLevel()
-AlarmHumanControl --> Alarm : buttonPressed
-AlarmHumanControl --> PreAlarm : [WL1 <= waterLevel < WL2] / \n Lb=On, Lc=Off, valve=Off, t=0
-AlarmHumanControl --> Normal : [waterLevel < W1] / \n Lb=On, Lc=Off, valve=Off, t=0
+Alarm : do / open the valve by getDegrees(waterLevel) \n or depending on pot if button is pressed
+Alarm  : [buttonPressed] / set manual control
 
 @enduml
