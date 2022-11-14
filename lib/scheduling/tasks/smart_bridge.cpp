@@ -1,6 +1,11 @@
+#include "lcd.h"
+#include "led.h"
+#include "motor.h"
+#include "sonar.h"
+#include "button.h"
 #include "blink_led.h"
-#include "components.h"
 #include "smart_bridge.h"
+#include "potentiometer.h"
 
 namespace Tasks{
     SmartBridge::SmartBridge(

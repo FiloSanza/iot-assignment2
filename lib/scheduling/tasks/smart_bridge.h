@@ -1,10 +1,16 @@
 #ifndef _SMART_BRIDGE_H_INCLUDED
 #define _SMART_BRIDGE_H_INCLUDED
 
+#include "lcd.h"
+#include "led.h"
 #include "task.h"
+#include "motor.h"
+#include "sonar.h"
 #include "types.h"
+#include "button.h"
 #include "blink_led.h"
-#include "components.h"
+#include "smart_bridge.h"
+#include "potentiometer.h"
 
 namespace Tasks {
     class SmartBridge : public Scheduling::PeriodicTask {

@@ -12,6 +12,7 @@
 #define LIGHT_SENSOR_PIN    A1
 #define POT_PIN             A0
 
+Components::LCD* lcd;
 Components::Led* led;
 Components::Button* btn;
 Components::Pir* pir;
@@ -30,6 +31,7 @@ Scheduling::Scheduler* scheduler = new Scheduling::Scheduler();
 void setup() {
     Serial.begin(9600);
     
+    lcd = new Components::LCD(4, 20, 0x27);
     led = new Components::Led(LED_PIN);
     btn = new Components::Button(BTN_PIN);
     pir = new Components::Pir(PIR_PIN);
@@ -42,18 +44,28 @@ void setup() {
     // scheduler->schedule(print_btn);
     // scheduler->schedule(print_bool);
     // scheduler->schedule(print_uint);
-    scheduler->schedule(print_float);
-    scheduler->schedule(smart_light);
+    // scheduler->schedule(print_float);
+    // scheduler->schedule(smart_light);
 
-    print_bool->addComponent("PIR", pir);
-    print_btn->addComponent("Bottone", btn);
-    print_uint->addComponent("Potenziometro", pot);
-    print_float->addComponent("Luce", light_sensor);
-    print_float->addComponent("Sonar", sonar);
+    // print_bool->addComponent("PIR", pir);
+    // print_btn->addComponent("Bottone", btn);
+    // print_uint->addComponent("Potenziometro", pot);
+    // print_float->addComponent("Luce", light_sensor);
+    // print_float->addComponent("Sonar", sonar);
 
-    Logger::Logger::getInstance().setLevel(Logger::LogLevel::Info);
+    // Logger::Logger::getInstance().setLevel(Logger::LogLevel::Info);
+    LCDLine *l;
+    l = (LCDLine*)malloc(2*sizeof(LCDLine));
+    l[0].column = 0;
+    l[0].row = 1;
+    l[0].text = "bello";
+    l[1].column = 0;
+    l[1].row = 0;
+    l[1].text = "sono";
+    lcd->displayMessage(l, 2);
 }
 
 void loop() {
-    scheduler->tick();
+
+    // scheduler->tick();
 }
