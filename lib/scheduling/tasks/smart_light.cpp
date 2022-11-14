@@ -20,7 +20,7 @@ namespace Tasks{
     void SmartLight::tick() {
         Logger::Message msg;
         msg.setLevel(Logger::LogLevel::Info)
-           .setSource(DEFAUL_SMART_LIGHT_TASK_NAME);
+           .setSource(DEFAULT_SMART_LIGHT_TASK_NAME);
 
         if (force_off) {
             led->turnOff();

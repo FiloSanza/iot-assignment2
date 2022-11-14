@@ -35,22 +35,30 @@ constexpr const char* DEFAULT_PRINT_DEBUG_TASK_NAME = "PrintDebug";
 constexpr int MAX_NUMBER_OF_COMPONENTS = 10;
 
 // Smart Light
-constexpr const char* DEFAUL_SMART_LIGHT_TASK_NAME = "SmartLight";
+constexpr const char* DEFAULT_SMART_LIGHT_TASK_NAME = "SmartLight";
 constexpr const char* SMART_LIGHT_FORCE_OFF_MSG = "System OFF.";
 constexpr const char* SMART_LIGHT_HIGH_AMBIENT_LIGHT = "Ambient light detected, LED OFF.";
+constexpr const char* SMART_LIGHT_ALWAYS_ON = "Always on enabled, LED ON.";
 constexpr const char* SMART_LIGHT_MOVEMENT_DETECTED = "Movement detected, LED ON.";
 constexpr const char* SMART_LIGHT_LED_TIMEOUT = "No momvement detected in a while, LED OFF.";
 constexpr int LIGHT_OFF_DELAY = 3000; // ms
 constexpr int LIGHT_SENSOR_THRESHOLD = 100;
 
 // Smart Bridge Task
-constexpr int WATER_LEVEL_1 = 0;
-constexpr int WATER_LEVEL_2 = 10;
-constexpr int WATER_LEVEL_MAX = 100;
+constexpr const char* DEFAULT_SMART_BRIDGE_TASK_NAME = "SmartBridge";
+
+// Threshold levels are reveted, the sonar will measure from the bridge,
+// the higher the water the smaller the measurement.
+constexpr int WATER_LEVEL_1 = 50;
+constexpr int WATER_LEVEL_2 = 25;
+constexpr int WATER_LEVEL_MAX = 0;
 constexpr int MESSAGE_LINES = 2;
-constexpr timestamp_t PE_NORMAL = 10000;
-constexpr timestamp_t PE_PREALARM = 100;
-constexpr timestamp_t PE_ALARM = 10; 
+constexpr timestamp_t PE_NORMAL = 2000;
+constexpr timestamp_t PE_PREALARM = 1000;
+constexpr timestamp_t PE_ALARM = 100;
 constexpr timestamp_t PE_BEGIN = 0;
+constexpr int WATER_LEVEL_READS = 5;
+
+// Pins
 
 #endif

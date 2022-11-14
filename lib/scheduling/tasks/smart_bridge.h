@@ -9,7 +9,7 @@
 #include "types.h"
 #include "button.h"
 #include "blink_led.h"
-#include "smart_bridge.h"
+#include "smart_light.h"
 #include "potentiometer.h"
 
 namespace Tasks {
@@ -18,14 +18,13 @@ namespace Tasks {
         SmartBridge() = default;
         SmartBridge(
             Components::LCD* lcd,
-            Components::Led* led_a,
             Components::Led* led_b,
-            Components::Led* led_c,
             Components::Motor* valve,
             Components::Sonar* sonar,
             Components::Button* button,
             Components::Potentiometer* pot,
-            Tasks::BlinkLed* blink_led
+            Tasks::BlinkLed* blink_led,
+            Tasks::SmartLight* smart_light
         );
 
         void init();
@@ -35,19 +34,22 @@ namespace Tasks {
         float water_level;
         BridgeState state;
         Components::LCD* lcd;
-        Components::Led* led_a;
         Components::Led* led_b;
         Components::Led* led_c;
         Components::Motor* valve;
         Components::Sonar* sonar;
         Components::Button* button;
         Tasks::BlinkLed* blink_led;
+        Tasks::SmartLight* smart_light;
         Components::Potentiometer* pot;
         LCDLine message[MESSAGE_LINES];
 
+        void set_normal_state();
+        void set_pre_alarm_state();
+        void set_alarm_state();
         void displayMessage();
         int computeValveAngle();
-        BridgeState computeBridgeState();
+        BridgeState updateWaterLevelAndGetBridgeState();
 
         static const char* bridgeStateToString(BridgeState state);
         static const timestamp_t getBridgeStatePeriod(BridgeState state);
