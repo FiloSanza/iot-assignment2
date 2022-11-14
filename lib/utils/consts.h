@@ -27,6 +27,9 @@ constexpr float M_TO_CM = 100.0f;
 constexpr int SERVO_LOWER_BOUND = 0;
 constexpr int SERVO_UPPER_BOUND = 180;
 
+// Blinking Led
+constexpr timestamp_t BLINKING_PERIOD = 2000; // ms
+
 // Scheduler
 constexpr int MAX_NUMBER_OF_TASKS = 20;
 
@@ -60,5 +63,15 @@ constexpr timestamp_t PE_BEGIN = 0;
 constexpr int WATER_LEVEL_READS = 5;
 
 // Pins
+constexpr int BUTTON_PIN = 12;
+constexpr int POT_PIN = A0;
+constexpr int SERVO_PIN = 9;
+constexpr int SONAR_TRIGGER_PIN = 11;
+constexpr int SONAR_ECHO_PIN = 10;
+constexpr int PIR_PIN = 3;
+constexpr int LED_A_PIN = 6;
+constexpr int LED_B_PIN = 7;
+constexpr int LED_C_PIN = 8;
+constexpr int LIGHT_SENSOR_PIN = A1;
 
 #endif

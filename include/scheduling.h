@@ -6,5 +6,6 @@
 #include "tasks/blink_led.h"
 #include "tasks/print_debug.h"
 #include "tasks/smart_light.h"
+#include "tasks/smart_bridge.h"
 
 #endif
