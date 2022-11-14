@@ -12,6 +12,10 @@ namespace Tasks {
             return;
         }
 
+        if (force_off) {
+            led->turnOff();
+        }
+
         Serial.flush();
 
         led->switchState();

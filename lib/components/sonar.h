@@ -8,13 +8,12 @@
 #include "consts.h"
 
 namespace Components {
-    class Sonar : public ReadableComponent<float> {
+    class Sonar : public ReadableComponent<uint32_t> {
     public:
         Sonar() = default;
         Sonar(pin_t echo_pin, pin_t trigger_pin);
 
-        float read();
-        float readAverage(uint32_t iterations);
+        uint32_t read();
     private:
         // NewPing sensor;
         pin_t echo_pin;

@@ -6,21 +6,21 @@
 #include "types.h"
 
 namespace Components {
-    class Potentiometer : public ReadableComponent<uint16_t> {
+    class Potentiometer : public ReadableComponent<uint32_t> {
     public:
-        Potentiometer(pin_t pin, uint16_t lower_bound, uint16_t upper_bound);
+        Potentiometer(pin_t pin, uint32_t lower_bound, uint32_t upper_bound);
 
-        void setUpperBound(uint16_t value);
-        void setLowerBound(uint16_t value);
+        void setUpperBound(uint32_t value);
+        void setLowerBound(uint32_t value);
 
-        uint16_t getUpperBound() const;
-        uint16_t getLowerBound() const;
-        uint16_t read();
+        uint32_t getUpperBound() const;
+        uint32_t getLowerBound() const;
+        uint32_t read();
 
     private:
         pin_t pin;
-        uint16_t lower_bound;
-        uint16_t upper_bound;
+        uint32_t lower_bound;
+        uint32_t upper_bound;
     };
 }
 

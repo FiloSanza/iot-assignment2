@@ -31,7 +31,7 @@ namespace Tasks {
         void tick();
 
     private:
-        float water_level;
+        int water_level;
         BridgeState state;
         Components::LCD* lcd;
         Components::Led* led_b;
@@ -39,9 +39,9 @@ namespace Tasks {
         Components::Motor* valve;
         Components::Sonar* sonar;
         Components::Button* button;
+        Components::Potentiometer* pot;
         Tasks::BlinkLed* blink_led;
         Tasks::SmartLight* smart_light;
-        Components::Potentiometer* pot;
         LCDLine message[MESSAGE_LINES];
 
         void set_normal_state();

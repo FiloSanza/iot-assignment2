@@ -7,7 +7,7 @@ namespace Components {
         pinMode(trigger_pin, OUTPUT);
     }
 
-    float Sonar::read() {
+    uint32_t Sonar::read() {
         digitalWrite(trigger_pin, LOW); 
         delayMicroseconds(3);
         digitalWrite(trigger_pin, HIGH);
@@ -18,14 +18,6 @@ namespace Components {
         float time_one_way = time_in_us * US_TO_S / 2.0;
         float distance = time_one_way * SPEED_OF_SOUND * M_TO_CM;
 
-        return  distance;
-    }
-
-    float Sonar::readAverage(uint32_t iterations) {
-        float total_distance = 0.0f;
-        for (uint32_t i=0; i<iterations; i++) {
-            total_distance += read();
-        }
-        return total_distance / iterations;
+        return (uint32_t)distance;
     }
 }

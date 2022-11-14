@@ -39,6 +39,6 @@ namespace Tasks {
     // See: https://stackoverflow.com/questions/8752837/undefined-reference-to-template-class-constructor
     template class PrintDebug<bool>;
     template class PrintDebug<float>;
-    template class PrintDebug<uint16_t>;
+    template class PrintDebug<uint32_t>;
     template class PrintDebug<ButtonState>;
 }

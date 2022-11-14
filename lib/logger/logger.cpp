@@ -26,7 +26,15 @@ namespace Logger {
     }
 
     void Message::log() const {
-        Logger::getInstance().log(*this);
+        // Logger::getInstance().log(*this);
+        if (level < LogLevel::Info){
+            return;
+        }
+
+        char str[100];
+        const char* level_str = Logger::logLevelToString(level);
+        snprintf(str, 100, "[%09lu][%s][%s] : %s", timestamp, level_str, source.c_str(), content.c_str());
+        Serial.println(str);
     }
 
     String Message::getSource() const {
@@ -46,16 +54,16 @@ namespace Logger {
     }
 
     Logger::Logger() : level(LogLevel::Error) {}
-    
+
     Logger& Logger::getInstance() {
         static Logger instance = Logger();
         return instance;
     }
-    
+
     void Logger::setLevel(LogLevel level) {
-        this->level = level; 
+        this->level = level;
     }
-    
+
     void Logger::log(LogLevel level, const char* msg) {
         // Do not log if the level isn't high enough
         if (level < this->level) {
@@ -64,6 +72,7 @@ namespace Logger {
 
         const char* level_str = Logger::logLevelToString(level);
         Serial.println("[" + String(level_str) + "]:" + String(msg));
+        // Serial.flush();
     }
 
     void Logger::log(const Message& msg) {
@@ -72,8 +81,11 @@ namespace Logger {
             return;
         }
 
+        char str[100];
         const char* level_str = Logger::logLevelToString(level);
-        Serial.println("[" + String(msg.getTimestamp()) + "][" + String(level_str) + "][" + msg.getSource() + "] : " + msg.getContent());
+        snprintf(str, 100, "[%09lu][%s][%s] : %s", msg.getTimestamp(), level_str, msg.getSource().c_str(), msg.getContent().c_str());
+        Serial.println(str);
+        // Serial.flush();
     }
 
     const char* Logger::logLevelToString(LogLevel level) {

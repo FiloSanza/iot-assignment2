@@ -41,8 +41,9 @@ namespace Logger {
         void setLevel(LogLevel level);
         void log(LogLevel level, const char* msg);
         void log(const Message& msg);
-    private:
+        
         static const char* logLevelToString(LogLevel level);
+    private:
 
         LogLevel level;
     };

@@ -18,8 +18,14 @@ namespace Tasks{
     void SmartLight::init() {}
 
     void SmartLight::tick() {
+        if (!canRun()) {
+            return;
+        }
+
+        markExecutedNow();
+
         Logger::Message msg;
-        msg.setLevel(Logger::LogLevel::Info)
+        msg.setLevel(Logger::LogLevel::Debug)
            .setSource(DEFAULT_SMART_LIGHT_TASK_NAME);
 
         if (force_off) {

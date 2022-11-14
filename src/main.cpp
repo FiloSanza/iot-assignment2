@@ -20,16 +20,15 @@ Tasks::BlinkLed* blink_led;
 Tasks::SmartLight* smart_light;
 Tasks::SmartBridge* smart_bridge;
 Tasks::PrintDebug<bool>* print_bool = new Tasks::PrintDebug<bool>(1000);
-Tasks::PrintDebug<float>* print_float = new Tasks::PrintDebug<float>(1000);
-Tasks::PrintDebug<uint16_t>* print_uint = new Tasks::PrintDebug<uint16_t>(1000);
+Tasks::PrintDebug<uint32_t>* print_uint = new Tasks::PrintDebug<uint32_t>(1000);
 Tasks::PrintDebug<ButtonState>* print_btn = new Tasks::PrintDebug<ButtonState>(1000);
 
 Scheduling::Scheduler* scheduler = new Scheduling::Scheduler();
 
 void setup() {
     Serial.begin(9600);
-    
-    lcd = new Components::LCD(2, 16, 0x27);
+
+    lcd = new Components::LCD(DEFAULT_LCD_ROWS, DEFAULT_LCD_COLUMNS, LCD_I2C_ADDRESS);
     led_a = new Components::Led(LED_A_PIN);
     led_b = new Components::Led(LED_B_PIN);
     led_c = new Components::Led(LED_C_PIN);
@@ -40,7 +39,7 @@ void setup() {
     sonar = new Components::Sonar(SONAR_ECHO_PIN, SONAR_TRIGGER_PIN);
     pot = new Components::Potentiometer(POT_PIN, 0, 180);
 
-    smart_light = new Tasks::SmartLight(led_a, light_sensor, pir, 10);
+    smart_light = new Tasks::SmartLight(led_a, light_sensor, pir, 1000);
     blink_led = new Tasks::BlinkLed(led_b, BLINKING_PERIOD);
     smart_bridge = new Tasks::SmartBridge(
         lcd,
@@ -53,13 +52,20 @@ void setup() {
         smart_light
     );
 
-    scheduler->schedule(print_float);
-    // scheduler->schedule(smart_light);
-    // scheduler->schedule(smart_bridge);
+    smart_bridge->init();
 
-    print_float->addComponent("Sonar", sonar);
+    scheduler->schedule(print_uint);
+    scheduler->schedule(smart_light);
+    scheduler->schedule(smart_bridge);
+    scheduler->schedule(blink_led);
 
-    Logger::Logger::getInstance().setLevel(Logger::LogLevel::Info);
+    print_uint->addComponent("Sonar", sonar);
+
+    Logger::Logger::getInstance().setLevel(Logger::LogLevel::Debug);
+
+    led_a->turnOn();
+    led_b->turnOn();
+    led_c->turnOn();
 }
 
 void loop() {
