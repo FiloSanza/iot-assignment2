@@ -94,6 +94,14 @@ namespace Tasks{
         if (button->read() == ButtonState::Pressed) {
             return pot->read();
         }
+
+        if (Serial.available() > 0) {
+            int byte_read = Serial.read();
+            if (byte_read >= 0 && byte_read <= 180) {
+                return byte_read;
+            }
+        }
+
         return map(WATER_LEVEL_2 - water_level + WATER_LEVEL_MIN, WATER_LEVEL_MIN, WATER_LEVEL_2, SERVO_LOWER_BOUND, SERVO_UPPER_BOUND);
     }    
 

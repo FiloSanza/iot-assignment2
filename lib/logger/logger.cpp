@@ -83,8 +83,8 @@ namespace Logger {
 
         String str = 
             "{\"src\": " + String(msg.getSource()) + 
-            " , \"data\": " + msg.getData() + 
-            ", \"desc\": " + msg.getDescription() +
+            " , \"data\": \"" + msg.getData() + "\"" +
+            ", \"desc\": \"" + msg.getDescription() + "\"" +
             ", \"lvl\": " + String(msg.getLevel()) +
             ", \"time\": " + String(msg.getTimestamp()) +
             ", \"tag\": " + String(msg.getTag()) + " }";
