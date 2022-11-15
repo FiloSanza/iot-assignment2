@@ -33,8 +33,8 @@ namespace Tasks {
     private:
         bool force_off;
         Components::Led* led;
-        Components::Pir* pir;
         Components::LightSensor* light_sensor;
+        Components::Pir* pir;
     };
 }
 

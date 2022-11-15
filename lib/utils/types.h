@@ -19,11 +19,22 @@ enum ButtonState {
     Pressed = 1
 };
 
-enum BridgeState  {
+enum BridgeState : uint32_t {
     Begin = 0,
     Normal,
     PreAlarm,
     Alarm
+};
+
+enum TaskId : uint32_t {
+    PrintDebug  = 0,
+    SmartBridge,
+    SmartLight
+};
+
+enum SmartBridgeMessageTag : uint32_t {
+    WaterLevelUpdate = 0,
+    NewStateUpdate = 1
 };
 
 #endif

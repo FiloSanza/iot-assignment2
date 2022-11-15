@@ -34,11 +34,9 @@ constexpr timestamp_t BLINKING_PERIOD = 2000; // ms
 constexpr int MAX_NUMBER_OF_TASKS = 20;
 
 // Print Debug Task
-constexpr const char* DEFAULT_PRINT_DEBUG_TASK_NAME = "PrintDebug";
 constexpr int MAX_NUMBER_OF_COMPONENTS = 10;
 
 // Smart Light
-constexpr const char* DEFAULT_SMART_LIGHT_TASK_NAME = "SmartLight";
 constexpr const char* SMART_LIGHT_FORCE_OFF_MSG = "System OFF.";
 constexpr const char* SMART_LIGHT_HIGH_AMBIENT_LIGHT = "Ambient light detected, LED OFF.";
 constexpr const char* SMART_LIGHT_ALWAYS_ON = "Always on enabled, LED ON.";
@@ -46,9 +44,6 @@ constexpr const char* SMART_LIGHT_MOVEMENT_DETECTED = "Movement detected, LED ON
 constexpr const char* SMART_LIGHT_LED_TIMEOUT = "No momvement detected in a while, LED OFF.";
 constexpr int LIGHT_OFF_DELAY = 3000; // ms
 constexpr int LIGHT_SENSOR_THRESHOLD = 300;
-
-// Smart Bridge Task
-constexpr const char* DEFAULT_SMART_BRIDGE_TASK_NAME = "SmartBridge";
 
 // Threshold levels are reveted, the sonar will measure from the bridge,
 // the higher the water the smaller the measurement.
@@ -73,5 +68,9 @@ constexpr int LED_A_PIN = 6;
 constexpr int LED_B_PIN = 7;
 constexpr int LED_C_PIN = 8;
 constexpr int LIGHT_SENSOR_PIN = A1;
+
+// General
+constexpr const char* LIGHT_STATE_OFF_STRING = "0";
+constexpr const char* LIGHT_STATE_ON_STRING = "1";
 
 #endif

@@ -14,25 +14,28 @@ namespace Logger {
     public:
         Message();
 
-        Message& setSource(uint32_t source);
+        Message& setSource(TaskId source);
         Message& setLevel(LogLevel level);
         Message& setData(String data);
         Message& setTimestamp(timestamp_t timestamp);
         Message& setDescription(String desc);
+        Message& setTag(uint32_t tag);
         
         void log() const;
-        uint32_t getSource() const;
+        TaskId getSource() const;
         String getData() const;
         LogLevel getLevel() const;
         timestamp_t getTimestamp() const;
         String getDescription() const;
+        uint32_t getTag() const;
 
     private:
         LogLevel level;
-        uint32_t source;
+        TaskId source;
         String data;
         String desc;
         timestamp_t timestamp;
+        uint32_t tag = -1;
     };
 
     class Logger {
@@ -46,7 +49,6 @@ namespace Logger {
         
         static const char* logLevelToString(LogLevel level);
     private:
-
         LogLevel level;
     };
 }

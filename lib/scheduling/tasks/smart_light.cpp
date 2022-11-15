@@ -26,29 +26,33 @@ namespace Tasks{
 
         Logger::Message msg;
         msg.setLevel(Logger::LogLevel::Debug)
-           .setSource(DEFAULT_SMART_LIGHT_TASK_NAME);
+           .setSource(TaskId::SmartLight);
 
         if (force_off) {
             led->turnOff();
-            msg.setContent(SMART_LIGHT_FORCE_OFF_MSG)
+            msg.setData(LIGHT_STATE_OFF_STRING)
+               .setDescription(SMART_LIGHT_FORCE_OFF_MSG)
                .log();
             return;
         }
 
         if (light_sensor->read() > LIGHT_SENSOR_THRESHOLD) {
             led->turnOff();
-            msg.setContent(SMART_LIGHT_HIGH_AMBIENT_LIGHT)
+            msg.setData(LIGHT_STATE_OFF_STRING)
+               .setDescription(SMART_LIGHT_HIGH_AMBIENT_LIGHT)
                .log();
             return;
         }
 
         bool movement_detected = pir->read();
         if (movement_detected) {
-            msg.setContent(SMART_LIGHT_MOVEMENT_DETECTED)
+            msg.setData(LIGHT_STATE_ON_STRING)
+               .setDescription(SMART_LIGHT_MOVEMENT_DETECTED)
                .log();
             led->turnOn();
         } else if (millis() - pir->getLastDetectedAt() >= LIGHT_OFF_DELAY) {
-            msg.setContent(SMART_LIGHT_LED_TIMEOUT)
+            msg.setData(LIGHT_STATE_OFF_STRING)
+               .setDescription(SMART_LIGHT_LED_TIMEOUT)
                .log();
             led->turnOff();
         }

@@ -16,14 +16,14 @@ namespace Components {
 
         pin_t pin;
         timestamp_t last_press;
-        bool use_pullup_resistor;
-        
         /**
         * Lazily evaluated by read.
         * There is no need to do polling, the value will be updated accordingly
         * when a read is performed.
         */
         ButtonState state;
+        bool use_pullup_resistor;
+        
     };
 }
 

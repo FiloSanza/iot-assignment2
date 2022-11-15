@@ -19,8 +19,9 @@ namespace Tasks {
         for (uint16_t i=0; i<last_idx; i++) {
             Logger::Message msg;
             msg.setLevel(Logger::LogLevel::Debug)
-               .setSource(DEFAULT_PRINT_DEBUG_TASK_NAME)
-               .setContent(components[i].name + " => " + String(components[i].component->read()))
+               .setSource(TaskId::PrintDebug)
+               .setData(String(components[i].component->read()))
+               .setDescription(components[i].name)
                .log();
         }
         markExecutedNow();

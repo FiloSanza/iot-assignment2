@@ -1,12 +1,11 @@
 #include "logger.h"
 
 #include <Arduino.h>
-#include <ArduinoJson.h>
 
 namespace Logger {
     Message::Message() : timestamp(millis()) {}
 
-    Message& Message::setSource(uint32_t source) {
+    Message& Message::setSource(TaskId source) {
         this->source = source;
         return *this;
     }
@@ -18,6 +17,11 @@ namespace Logger {
 
     Message& Message::setData(String data) {
         this->data = data;
+        return *this;
+    }
+
+    Message& Message::setTag(uint32_t tag) {
+        this->tag = tag;
         return *this;
     }
 
@@ -35,12 +39,16 @@ namespace Logger {
         Logger::getInstance().log(*this);
     }
 
-    uint32_t Message::getSource() const {
+    TaskId Message::getSource() const {
         return source;
     }
 
     String Message::getData() const {
         return data;
+    }
+
+    uint32_t Message::getTag() const {
+        return tag;
     }
 
     String Message::getDescription() const {
@@ -55,7 +63,8 @@ namespace Logger {
         return timestamp;
     }
 
-    Logger::Logger() : level(LogLevel::Error) {}
+    Logger::Logger() : level(LogLevel::Error) {
+    }
 
     Logger& Logger::getInstance() {
         static Logger instance = Logger();
@@ -72,14 +81,15 @@ namespace Logger {
             return;
         }
 
-        DynamicJsonDocument json(1024);
-        json["src"] = msg.getSource();
-        json["data"] = msg.getData();
-        json["desc"] = msg.getDescription();
-        json["lvl"] = msg.getLevel();
-        json["time"] = msg.getTimestamp();
+        String str = 
+            "{\"src\": " + String(msg.getSource()) + 
+            " , \"data\": " + msg.getData() + 
+            ", \"desc\": " + msg.getDescription() +
+            ", \"lvl\": " + String(msg.getLevel()) +
+            ", \"time\": " + String(msg.getTimestamp()) +
+            ", \"tag\": " + String(msg.getTag()) + " }";
 
-        serializeJson(json, Serial);
+        Serial.println(str);
     }
 
     const char* Logger::logLevelToString(LogLevel level) {

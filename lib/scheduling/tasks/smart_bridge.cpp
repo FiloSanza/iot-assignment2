@@ -41,9 +41,11 @@ namespace Tasks{
         BridgeState new_state = updateWaterLevelAndGetBridgeState();
 
         Logger::Message msg;
-        msg.setSource(DEFAULT_SMART_BRIDGE_TASK_NAME)
+        msg.setSource(TaskId::SmartBridge)
            .setLevel(Logger::LogLevel::Info)
-           .setContent("water level: " + String(water_level))
+           .setData(String(water_level))
+           .setTag(SmartBridgeMessageTag::WaterLevelUpdate)
+           .setDescription("water level update")
            .log();
 
         if (new_state == BridgeState::Alarm) {
@@ -59,9 +61,11 @@ namespace Tasks{
         state = new_state;
         displayMessage();
 
-        msg.setSource(DEFAULT_SMART_BRIDGE_TASK_NAME)
+        msg.setSource(TaskId::SmartBridge)
            .setLevel(Logger::LogLevel::Info)
-           .setContent("new state: " + String(SmartBridge::bridgeStateToString(state)))
+           .setData(String(state))
+           .setTag(SmartBridgeMessageTag::NewStateUpdate)
+           .setDescription("new state")
            .log();
 
         timestamp_t new_period = getBridgeStatePeriod(state);
