@@ -19,9 +19,6 @@ Components::Potentiometer* pot;
 Tasks::BlinkLed* blink_led;
 Tasks::SmartLight* smart_light;
 Tasks::SmartBridge* smart_bridge;
-Tasks::PrintDebug<bool>* print_bool = new Tasks::PrintDebug<bool>(1000);
-Tasks::PrintDebug<uint32_t>* print_uint = new Tasks::PrintDebug<uint32_t>(1000);
-Tasks::PrintDebug<ButtonState>* print_btn = new Tasks::PrintDebug<ButtonState>(1000);
 
 Scheduling::Scheduler* scheduler = new Scheduling::Scheduler();
 
@@ -40,7 +37,7 @@ void setup() {
     pot = new Components::Potentiometer(POT_PIN, 0, 180);
 
     smart_light = new Tasks::SmartLight(led_a, light_sensor, pir, 1000);
-    blink_led = new Tasks::BlinkLed(led_b, BLINKING_PERIOD);
+    blink_led = new Tasks::BlinkLed(led_c, BLINKING_PERIOD);
     smart_bridge = new Tasks::SmartBridge(
         lcd,
         led_b,
@@ -54,18 +51,11 @@ void setup() {
 
     smart_bridge->init();
 
-    scheduler->schedule(print_uint);
     scheduler->schedule(smart_light);
     scheduler->schedule(smart_bridge);
     scheduler->schedule(blink_led);
 
-    print_uint->addComponent("Sonar", sonar);
-
     Logger::Logger::getInstance().setLevel(Logger::LogLevel::Debug);
-
-    // led_a->turnOn();
-    // led_b->turnOn();
-    // led_c->turnOn();
 }
 
 void loop() {

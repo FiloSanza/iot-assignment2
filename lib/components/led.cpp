@@ -15,12 +15,12 @@ namespace Components
     }
 
     void Led::turnOff() {
-        if (is_on) {
+         if (is_on) {
             is_on = false;
             digitalWrite(pin, LOW);
         }
     }
-
+ 
     void Led::switchState() {
         if (is_on) {
             turnOff();

@@ -130,7 +130,7 @@ namespace Tasks{
     void SmartBridge::set_alarm_state() {
         // Disable smart light system
         smart_light->turnOff();
-        // led_b->turnOff();
+        led_b->turnOff();
         
         // Disable blinking alarm led, set it to always on 
         blink_led->turnOn();
