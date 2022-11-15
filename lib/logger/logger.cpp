@@ -26,15 +26,7 @@ namespace Logger {
     }
 
     void Message::log() const {
-        // Logger::getInstance().log(*this);
-        if (level < LogLevel::Info){
-            return;
-        }
-
-        char str[100];
-        const char* level_str = Logger::logLevelToString(level);
-        snprintf(str, 100, "[%09lu][%s][%s] : %s", timestamp, level_str, source.c_str(), content.c_str());
-        Serial.println(str);
+        Logger::getInstance().log(*this);
     }
 
     String Message::getSource() const {
@@ -72,7 +64,6 @@ namespace Logger {
 
         const char* level_str = Logger::logLevelToString(level);
         Serial.println("[" + String(level_str) + "]:" + String(msg));
-        // Serial.flush();
     }
 
     void Logger::log(const Message& msg) {
@@ -85,7 +76,6 @@ namespace Logger {
         const char* level_str = Logger::logLevelToString(level);
         snprintf(str, 100, "[%09lu][%s][%s] : %s", msg.getTimestamp(), level_str, msg.getSource().c_str(), msg.getContent().c_str());
         Serial.println(str);
-        // Serial.flush();
     }
 
     const char* Logger::logLevelToString(LogLevel level) {
