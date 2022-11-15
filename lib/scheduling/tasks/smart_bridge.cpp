@@ -45,16 +45,19 @@ namespace Tasks{
            .setLevel(Logger::LogLevel::Info)
            .setContent("water level: " + String(water_level))
            .log();
-        displayMessage();
 
         if (new_state == BridgeState::Alarm) {
             valve->moveTo(computeValveAngle());
         }
 
         if (state == new_state) { 
+            // Display new water level only
+            displayMessage();
             return;
         }
+        // Display new water level and state
         state = new_state;
+        displayMessage();
 
         msg.setSource(DEFAULT_SMART_BRIDGE_TASK_NAME)
            .setLevel(Logger::LogLevel::Info)
@@ -112,9 +115,10 @@ namespace Tasks{
 
         valve->moveTo(0);
     }
-    
+
     void SmartBridge::set_pre_alarm_state() {
         smart_light->turnOn();
+        led_b->turnOn();
         
         // Enable blinking of the alarm led
         blink_led->disableAlwaysOn();
@@ -126,7 +130,7 @@ namespace Tasks{
     void SmartBridge::set_alarm_state() {
         // Disable smart light system
         smart_light->turnOff();
-        led_b->turnOff();
+        // led_b->turnOff();
         
         // Disable blinking alarm led, set it to always on 
         blink_led->turnOn();

@@ -8,18 +8,24 @@ namespace Tasks {
     void BlinkLed::init() {}
 
     void BlinkLed::tick() {
-        if (!canRun()) {
+        // We want the force_off and always_on cases to be as reactive as possile.
+        // We won't wait the period for those.
+        if (force_off) {
+            led->turnOff();
             return;
         }
 
-        if (force_off) {
-            led->turnOff();
+        if (always_on) {
+            led->turnOn();
+            return;
         }
 
-        Serial.flush();
+        if (!canRun()) {
+            return;
+        }
+        markExecutedNow();
 
         led->switchState();
-        markExecutedNow();
     }
 
     /**

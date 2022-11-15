@@ -63,9 +63,9 @@ void setup() {
 
     Logger::Logger::getInstance().setLevel(Logger::LogLevel::Debug);
 
-    led_a->turnOn();
-    led_b->turnOn();
-    led_c->turnOn();
+    // led_a->turnOn();
+    // led_b->turnOn();
+    // led_c->turnOn();
 }
 
 void loop() {

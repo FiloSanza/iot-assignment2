@@ -22,7 +22,6 @@ namespace Components
     }
 
     void Led::switchState() {
-        Serial.flush();
         if (is_on) {
             turnOff();
         } else {

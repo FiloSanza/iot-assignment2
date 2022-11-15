@@ -58,7 +58,7 @@ constexpr int WATER_LEVEL_MIN = 0;
 constexpr int MESSAGE_LINES = 2;
 constexpr timestamp_t PE_NORMAL = 2000;
 constexpr timestamp_t PE_PREALARM = 1000;
-constexpr timestamp_t PE_ALARM = 100;
+constexpr timestamp_t PE_ALARM = 500;
 constexpr timestamp_t PE_BEGIN = 0;
 constexpr int WATER_LEVEL_READS = 5;
 
