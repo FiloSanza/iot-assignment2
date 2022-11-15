@@ -4,21 +4,21 @@
 namespace Tasks{
     SmartBridge::SmartBridge(
         Components::LCD* lcd,
-        Components::Led* led_b,
         Components::Motor* valve,
         Components::Sonar* sonar,
         Components::Button* button,
-        Components::Potentiometer* pot,
         Tasks::BlinkLed* blink_led,
-        Tasks::SmartLight* smart_light
+        Tasks::SmartLight* smart_light,
+        Components::Potentiometer* pot,
+        Components::Led* bridge_open_led
     ) : lcd(lcd),
-        led_b(led_b),
         valve(valve),
         sonar(sonar),
         button(button),
-        pot(pot),
         blink_led(blink_led),
-        smart_light(smart_light) {
+        smart_light(smart_light),
+        pot(pot),
+        bridge_open_led(bridge_open_led) {
         setPeriodAndRestartTimer(PE_NORMAL);
         message[0].row = FIRST_LINE;
         message[0].column = FIRST_COLUMN;
@@ -119,7 +119,7 @@ namespace Tasks{
     void SmartBridge::set_normal_state() {
         // Enable smart light system
         smart_light->turnOn();
-        led_b->turnOn();
+        bridge_open_led->turnOn();
         
         // Turn off alarm led 
         blink_led->turnOff();
@@ -130,7 +130,7 @@ namespace Tasks{
 
     void SmartBridge::set_pre_alarm_state() {
         smart_light->turnOn();
-        led_b->turnOn();
+        bridge_open_led->turnOn();
         
         // Enable blinking of the alarm led
         blink_led->disableAlwaysOn();
@@ -142,7 +142,7 @@ namespace Tasks{
     void SmartBridge::set_alarm_state() {
         // Disable smart light system
         smart_light->turnOff();
-        led_b->turnOff();
+        bridge_open_led->turnOff();
         
         // Disable blinking alarm led, set it to always on 
         blink_led->turnOn();

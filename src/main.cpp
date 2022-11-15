@@ -6,9 +6,9 @@
 #include <consts.h>
 
 Components::LCD* lcd;
-Components::Led* led_a;
-Components::Led* led_b;
-Components::Led* led_c;
+Components::Led* smart_led;
+Components::Led* bridge_open_led;
+Components::Led* warning_led;
 Components::Button* btn;
 Components::Pir* pir;
 Components::LightSensor* light_sensor;
@@ -26,9 +26,9 @@ void setup() {
     Serial.begin(9600);
 
     lcd = new Components::LCD(DEFAULT_LCD_ROWS, DEFAULT_LCD_COLUMNS, LCD_I2C_ADDRESS);
-    led_a = new Components::Led(LED_A_PIN);
-    led_b = new Components::Led(LED_B_PIN);
-    led_c = new Components::Led(LED_C_PIN);
+    smart_led = new Components::Led(SMART_LED_PIN);
+    bridge_open_led = new Components::Led(BRIDGE_OPEN_LED_PIN);
+    warning_led = new Components::Led(WARNING_LED_PIN);
     btn = new Components::Button(BUTTON_PIN);
     pir = new Components::Pir(PIR_PIN);
     valve = new Components::Motor(SERVO_PIN);
@@ -36,17 +36,17 @@ void setup() {
     sonar = new Components::Sonar(SONAR_ECHO_PIN, SONAR_TRIGGER_PIN);
     pot = new Components::Potentiometer(POT_PIN, 0, 180);
 
-    smart_light = new Tasks::SmartLight(led_a, light_sensor, pir, 1000);
-    blink_led = new Tasks::BlinkLed(led_c, BLINKING_PERIOD);
+    smart_light = new Tasks::SmartLight(smart_led, light_sensor, pir, 1000);
+    blink_led = new Tasks::BlinkLed(warning_led, BLINKING_PERIOD);
     smart_bridge = new Tasks::SmartBridge(
         lcd,
-        led_b,
         valve,
         sonar,
         btn,
-        pot,
         blink_led,
-        smart_light
+        smart_light,
+        pot,
+        bridge_open_led
     );
 
     smart_bridge->init();

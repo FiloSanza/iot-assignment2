@@ -64,9 +64,9 @@ constexpr int SERVO_PIN = 9;
 constexpr int SONAR_TRIGGER_PIN = 11;
 constexpr int SONAR_ECHO_PIN = 10;
 constexpr int PIR_PIN = 3;
-constexpr int LED_A_PIN = 6;
-constexpr int LED_B_PIN = 7;
-constexpr int LED_C_PIN = 8;
+constexpr int SMART_LED_PIN = 6;
+constexpr int BRIDGE_OPEN_LED_PIN = 7;
+constexpr int WARNING_LED_PIN = 8;
 constexpr int LIGHT_SENSOR_PIN = A1;
 
 // General

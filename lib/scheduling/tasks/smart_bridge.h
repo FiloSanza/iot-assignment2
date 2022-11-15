@@ -18,13 +18,13 @@ namespace Tasks {
         SmartBridge() = default;
         SmartBridge(
             Components::LCD* lcd,
-            Components::Led* led_b,
             Components::Motor* valve,
             Components::Sonar* sonar,
             Components::Button* button,
-            Components::Potentiometer* pot,
             Tasks::BlinkLed* blink_led,
-            Tasks::SmartLight* smart_light
+            Tasks::SmartLight* smart_light,
+            Components::Potentiometer* pot,
+            Components::Led* bridge_open_led
         );
 
         void init();
@@ -34,14 +34,14 @@ namespace Tasks {
         int water_level;
         BridgeState state;
         Components::LCD* lcd;
-        Components::Led* led_b;
         Components::Led* led_c;
         Components::Motor* valve;
         Components::Sonar* sonar;
         Components::Button* button;
-        Components::Potentiometer* pot;
         Tasks::BlinkLed* blink_led;
         Tasks::SmartLight* smart_light;
+        Components::Potentiometer* pot;
+        Components::Led* bridge_open_led;
         LCDLine message[MESSAGE_LINES];
 
         void set_normal_state();
