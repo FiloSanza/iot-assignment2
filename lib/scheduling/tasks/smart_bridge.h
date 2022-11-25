@@ -43,6 +43,8 @@ namespace Tasks {
         Components::Potentiometer* pot;
         Components::Led* bridge_open_led;
         LCDLine message[MESSAGE_LINES];
+        timestamp_t last_valve_override;
+        int valve_override;
 
         void set_normal_state();
         void set_pre_alarm_state();

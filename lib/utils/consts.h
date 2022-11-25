@@ -56,6 +56,7 @@ constexpr timestamp_t PE_PREALARM = 1000;
 constexpr timestamp_t PE_ALARM = 500;
 constexpr timestamp_t PE_BEGIN = 0;
 constexpr int WATER_LEVEL_READS = 5;
+constexpr int VALVE_OVERRIDE_DELTA = 2000;
 
 // Pins
 constexpr int BUTTON_PIN = 12;

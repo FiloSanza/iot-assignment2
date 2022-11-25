@@ -18,7 +18,9 @@ namespace Tasks{
         blink_led(blink_led),
         smart_light(smart_light),
         pot(pot),
-        bridge_open_led(bridge_open_led) {
+        bridge_open_led(bridge_open_led),
+        last_valve_override(0),
+        valve_override(0) {
         setPeriodAndRestartTimer(PE_NORMAL);
         message[0].row = FIRST_LINE;
         message[0].column = FIRST_COLUMN;
@@ -96,10 +98,19 @@ namespace Tasks{
         }
 
         if (Serial.available() > 0) {
-            int byte_read = Serial.read();
+            int byte_read;
+            do {
+                byte_read = Serial.read();
+            } while (byte_read == 0 || Serial.available() > 0);
             if (byte_read >= 0 && byte_read <= 180) {
-                return byte_read;
+                valve_override = byte_read;
+                last_valve_override = millis();
+                return valve_override;
             }
+        }
+
+        if (millis() - last_valve_override < VALVE_OVERRIDE_DELTA) {
+            return valve_override;
         }
 
         return map(WATER_LEVEL_2 - water_level + WATER_LEVEL_MIN, WATER_LEVEL_MIN, WATER_LEVEL_2, SERVO_LOWER_BOUND, SERVO_UPPER_BOUND);
