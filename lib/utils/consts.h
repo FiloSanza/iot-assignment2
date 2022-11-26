@@ -41,7 +41,7 @@ constexpr const char* SMART_LIGHT_FORCE_OFF_MSG = "System OFF.";
 constexpr const char* SMART_LIGHT_HIGH_AMBIENT_LIGHT = "Ambient light detected, LED OFF.";
 constexpr const char* SMART_LIGHT_ALWAYS_ON = "Always on enabled, LED ON.";
 constexpr const char* SMART_LIGHT_MOVEMENT_DETECTED = "Movement detected, LED ON.";
-constexpr const char* SMART_LIGHT_LED_TIMEOUT = "No momvement detected in a while, LED OFF.";
+constexpr const char* SMART_LIGHT_LED_TIMEOUT = "No movement detected in a while, LED OFF.";
 constexpr int LIGHT_OFF_DELAY = 3000; // ms
 constexpr int LIGHT_SENSOR_THRESHOLD = 300;
 
@@ -55,6 +55,7 @@ constexpr timestamp_t PE_NORMAL = 2000;
 constexpr timestamp_t PE_PREALARM = 1000;
 constexpr timestamp_t PE_ALARM = 500;
 constexpr timestamp_t PE_BEGIN = 0;
+constexpr timestamp_t BUTTON_DELAY = 3000;
 constexpr int WATER_LEVEL_READS = 5;
 constexpr int VALVE_OVERRIDE_DELTA = 2000;
 
