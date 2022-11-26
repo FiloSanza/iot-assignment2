@@ -20,7 +20,9 @@ namespace Tasks{
         pot(pot),
         bridge_open_led(bridge_open_led),
         last_valve_override(0),
+        last_button_pressed(0),
         valve_override(0) {
+        button_pressed = false;
         setPeriodAndRestartTimer(PE_NORMAL);
         message[0].row = FIRST_LINE;
         message[0].column = FIRST_COLUMN;
@@ -94,6 +96,15 @@ namespace Tasks{
 
     int SmartBridge::computeValveAngle() {
         if (button->read() == ButtonState::Pressed) {
+            timestamp_t curr_time = millis();
+            if (curr_time - last_button_pressed > BUTTON_DELAY) {
+                Serial.println("button");
+                button_pressed = !button_pressed;
+                last_button_pressed = curr_time;
+            }
+        }
+        if (button_pressed) {
+
             return pot->read();
         }
 

@@ -32,6 +32,7 @@ namespace Tasks {
 
     private:
         int water_level;
+        bool button_pressed;
         BridgeState state;
         Components::LCD* lcd;
         Components::Led* led_c;
@@ -44,6 +45,7 @@ namespace Tasks {
         Components::Led* bridge_open_led;
         LCDLine message[MESSAGE_LINES];
         timestamp_t last_valve_override;
+        timestamp_t last_button_pressed;
         int valve_override;
 
         void set_normal_state();
